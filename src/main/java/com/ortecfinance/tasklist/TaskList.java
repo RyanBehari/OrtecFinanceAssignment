@@ -77,6 +77,10 @@ public final class TaskList implements Runnable {
                 help();
                 break;
             case "deadline":
+                if (commandRest.length < 2) {
+                    out.println("Please provide a task ID");
+                    break;
+                }
                 deadline(commandRest[1]);
                 break;
             case "today":
@@ -221,21 +225,36 @@ public final class TaskList implements Runnable {
 
     //function to set the deadline
     private void deadline(String commandLine){
-        String[] arguments = commandLine.split(" ", 2);
-        int taskID = Integer.parseInt(arguments[0]);
-        LocalDate date = parseDate(arguments[1]);
+        try{
+            String[] arguments = commandLine.split(" ", 2);
+            if (arguments.length < 2) {
+                out.println("Please provide both an ID and a deadline.");
+                return;
+            }
+            int taskID = Integer.parseInt(arguments[0]);
+            LocalDate date = parseDate(arguments[1]);
 
-        //search through tasks to find a corresponding task id, if found, set a deadline for it
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-            for (Task task : project.getValue()) {
-                if (task.getId() == taskID) {
-                    task.setDeadline(date);
-                    return;
+            //search through tasks to find a corresponding task id, if found, set a deadline for it
+            for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+                for (Task task : project.getValue()) {
+                    if (task.getId() == taskID) {
+                        task.setDeadline(date);
+                        return;
+                    }
                 }
             }
+            out.printf("Could not find a task with an ID of %d.", taskID);
+            out.println();
         }
-        out.printf("Could not find a task with an ID of %d.", taskID);
-        out.println();
+        catch (NumberFormatException e) {
+            out.println("Invalid task ID");
+            out.println();
+        }
+        catch (Exception e) {
+            out.println("Please use the format deadline <task ID> <dd-mm-yyyy>..");
+            out.println();
+        }
+
     }
 
     private void viewByDeadline() {
