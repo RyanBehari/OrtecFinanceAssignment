@@ -54,6 +54,7 @@ public final class ApplicationTest {
         execute("add task secrets Eat more donuts.");
         execute("add task secrets Destroy all humans.");
 
+
         execute("show");
         readLines(
             "secrets",
@@ -88,6 +89,43 @@ public final class ApplicationTest {
                 "    [x] 6: Primitive Obsession",
                 "    [ ] 7: Outside-In TDD",
                 "    [ ] 8: Interaction-Driven Design",
+                ""
+        );
+
+        execute("quit");
+    }
+
+    @Test
+    void deadlineTodayFunctionalityCheck() throws IOException {
+        java.time.LocalDate today = java.time.LocalDate.now();
+        String todayStr = String.format("%02d-%02d-%04d",
+                today.getDayOfMonth(),
+                today.getMonthValue(),
+                today.getYear());
+
+        execute("add project gamingRoutine");
+        execute("add task gamingRoutine Play mario kart.");
+        execute("add task gamingRoutine Play Minecraft");
+
+        execute("add project braintraining");
+        execute("add task braintraining finish some chess matches");
+        execute("add task braintraining play a bit of checkers");
+
+        execute("deadline 1 " + todayStr);
+        execute("deadline 2 17-09-2026");
+        execute("deadline 3 " + todayStr);
+        execute("deadline 4 25-11-2027");
+
+        execute("check 1");
+
+        execute("today");
+        readLines(
+                todayStr,
+                "gamingRoutine",
+                "    [x] 1: Play mario kart.",
+                "",
+                "braintraining",
+                "    [ ] 3: finish some chess matches",
                 ""
         );
 

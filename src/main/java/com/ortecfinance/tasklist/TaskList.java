@@ -91,7 +91,7 @@ public final class TaskList implements Runnable {
 
     private void today(){
         LocalDate todaysDate = LocalDate.now();
-
+        out.println(dateToString(todaysDate));
         for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
             //collect all the tasks that have a deadline for today
             List<Task> todaysTasks = new ArrayList<>();
@@ -103,7 +103,6 @@ public final class TaskList implements Runnable {
 
             //check if there even are any tasks with deadlines for today
             if (!todaysTasks.isEmpty()) {
-                out.println(dateToString(todaysDate));
                 out.println(project.getKey());
                 for (Task task : todaysTasks) {
                     out.printf("    [%c] %d: %s%n",
