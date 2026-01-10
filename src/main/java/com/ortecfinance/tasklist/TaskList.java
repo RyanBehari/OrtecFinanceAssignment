@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -65,6 +66,9 @@ public final class TaskList implements Runnable {
                 break;
             case "help":
                 help();
+                break;
+            case "deadline":
+                deadline(commandRest[1]);
                 break;
             default:
                 error(command);
@@ -129,13 +133,43 @@ public final class TaskList implements Runnable {
         out.println();
     }
 
+    //subfunction to parse the date given dd-mm-yyyy format
+    private LocalDate parseDate(String dateString) {
+        String[] parts = dateString.split("-");
+        int day = Integer.parseInt(parts[0]);
+        int month = Integer.parseInt(parts[1]);
+        int year = Integer.parseInt(parts[2]);
+        return LocalDate.of(year, month, day);
+    }
+
+    //function to set the deadline
+    private void deadline(String commandLine){
+        String[] arguments = commandLine.split(" ", 2);
+        int taskID = Integer.parseInt(arguments[0]);
+        LocalDate date = parseDate(arguments[1]);
+
+        //search through tasks to find a corresponding task id, if found, set a deadline for it
+        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+            for (Task task : project.getValue()) {
+                if (task.getId() == taskID) {
+                    task.setDeadline(date);
+                    return;
+                }
+            }
+        }
+        out.printf("Could not find a task with an ID of %d.", taskID);
+        out.println();
+    }
+
     private void help() {
         out.println("Commands:");
         out.println("  show");
+        out.println("  today");
         out.println("  add project <project name>");
         out.println("  add task <project name> <task description>");
         out.println("  check <task ID>");
         out.println("  uncheck <task ID>");
+        out.println("  deadline <task ID> <date>");
         out.println();
     }
 
