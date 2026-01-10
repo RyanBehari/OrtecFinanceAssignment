@@ -56,9 +56,17 @@ public final class TaskList implements Runnable {
                 add(commandRest[1]);
                 break;
             case "check":
+                if (commandRest.length < 2) {
+                    out.println("Please provide a task ID");
+                    break;
+                }
                 check(commandRest[1]);
                 break;
             case "uncheck":
+                if (commandRest.length < 2) {
+                    out.println("Please provide a task ID");
+                    break;
+                }
                 uncheck(commandRest[1]);
                 break;
             case "help":
@@ -150,17 +158,25 @@ public final class TaskList implements Runnable {
     }
 
     private void setDone(String idString, boolean done) {
-        int id = Integer.parseInt(idString);
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-            for (Task task : project.getValue()) {
-                if (task.getId() == id) {
-                    task.setDone(done);
-                    return;
+
+        try{
+            int id = Integer.parseInt(idString);
+            for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+                for (Task task : project.getValue()) {
+                    if (task.getId() == id) {
+                        task.setDone(done);
+                        return;
+                    }
                 }
             }
+            out.printf("Could not find a task with an ID of %d.", id);
+            out.println();
         }
-        out.printf("Could not find a task with an ID of %d.", id);
-        out.println();
+        catch (NumberFormatException e) {
+            out.printf("Invalid task ID: %s.", idString);
+            out.println();
+        }
+
     }
 
     //subfunction to parse the date given dd-mm-yyyy format
