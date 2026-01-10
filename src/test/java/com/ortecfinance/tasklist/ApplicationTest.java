@@ -132,6 +132,43 @@ public final class ApplicationTest {
         execute("quit");
     }
 
+    @Test
+    void viewByDeadlineTest() throws IOException {
+        execute("add project Secrets");
+        execute("add task Secrets Eat more donuts.");
+
+        execute("add project Training");
+        execute("add task Training Refactor the codebase");
+        execute("add task Training Interaction-Driven Design");
+        execute("add task Training Four Elements of Simple Design");
+
+        execute("deadline 1 11-11-2021");
+        execute("deadline 4 11-11-2021");
+        execute("deadline 3 13-11-2021");
+
+        execute("check 1");
+
+        execute("view-by-deadline");
+        readLines(
+                "11-11-2021:",
+                "  Secrets:",
+                "    [x] 1: Eat more donuts.",
+                "  Training:",
+                "    [ ] 4: Four Elements of Simple Design",
+                "",
+                "13-11-2021:",
+                "  Training:",
+                "    [ ] 3: Interaction-Driven Design",
+                "",
+                "No deadline:",
+                "  Training:",
+                "    [ ] 2: Refactor the codebase",
+                ""
+        );
+
+        execute("quit");
+    }
+
     private void execute(String command) throws IOException {
         read(PROMPT);
         write(command);
