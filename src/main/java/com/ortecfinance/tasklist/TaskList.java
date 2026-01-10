@@ -53,6 +53,10 @@ public final class TaskList implements Runnable {
                 show();
                 break;
             case "add":
+                if (commandRest.length < 2) {
+                    out.println("Please specify what to add (project/task).");
+                    break;
+                }
                 add(commandRest[1]);
                 break;
             case "check":
@@ -128,14 +132,31 @@ public final class TaskList implements Runnable {
         String[] subcommandRest = commandLine.split(" ", 2);
         String subcommand = subcommandRest[0];
         if (subcommand.equals("project")) {
+            if (subcommandRest.length < 2) {
+                out.println("Please provide a project name.");
+                return;
+            }
             addProject(subcommandRest[1]);
         } else if (subcommand.equals("task")) {
+            if (subcommandRest.length < 2) {
+                out.println("Please provide a project name and task description.");
+                return;
+            }
             String[] projectTask = subcommandRest[1].split(" ", 2);
+            if (projectTask.length < 2) {
+                out.println("Please provide both the project name and task description.");
+                return;
+            }
             addTask(projectTask[0], projectTask[1]);
         }
     }
 
     private void addProject(String name) {
+        if (tasks.containsKey(name)) {
+            out.printf("A project with the name of %s already exists.", name);
+            out.println();
+            return;
+        }
         tasks.put(name, new ArrayList<Task>());
     }
 
@@ -283,6 +304,7 @@ public final class TaskList implements Runnable {
         out.println("  check <task ID>");
         out.println("  uncheck <task ID>");
         out.println("  deadline <task ID> <date>");
+        out.println("  quit");
         out.println();
     }
 
