@@ -5,10 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public final class TaskList implements Runnable {
     private static final String QUIT = "quit";
@@ -73,6 +70,9 @@ public final class TaskList implements Runnable {
             case "today":
                 today();
                 break;
+            case "view-by-deadline":
+                viewByDeadline();
+                break;
             default:
                 error(command);
                 break;
@@ -114,6 +114,7 @@ public final class TaskList implements Runnable {
             }
         }
     }
+
 
     private void add(String commandLine) {
         String[] subcommandRest = commandLine.split(" ", 2);
@@ -200,10 +201,67 @@ public final class TaskList implements Runnable {
         out.println();
     }
 
+    private void viewByDeadline() {
+        //TreeMap to automatically sort added tasks chronologically
+        Map<LocalDate, Map<String, List<Task>>> tasksDeadlineSorted = new TreeMap<>();
+        //LinkedHashMap for guarranteed reproducability
+        Map<String, List<Task>> tasksWithoutDeadline = new LinkedHashMap<>();
+
+        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+            String projName = project.getKey();
+            for (Task task : project.getValue()) {
+                //Add to the correct mapping depending on if tasks has a set deadline or not
+                if (task.getDeadline() != null) {
+                    tasksDeadlineSorted
+                            .computeIfAbsent(task.getDeadline(), k -> new LinkedHashMap<>())
+                            .computeIfAbsent(projName, k -> new ArrayList<>())
+                            .add(task);
+                } else {
+                    tasksWithoutDeadline
+                            .computeIfAbsent(projName, k -> new ArrayList<>())
+                            .add(task);
+                }
+            }
+        }
+
+        //First we display the tasks sorted by deadline and then project
+        for (Map.Entry<LocalDate, Map<String, List<Task>>> deadlineEntry : tasksDeadlineSorted.entrySet()) {
+            out.println(dateToString(deadlineEntry.getKey()) + ":");
+            for (Map.Entry<String, List<Task>> projectEntry : deadlineEntry.getValue().entrySet()) {
+                out.println("  " + projectEntry.getKey() + ":");
+                for (Task task : projectEntry.getValue()) {
+                    out.printf("    [%c] %d: %s%n",
+                            (task.isDone() ? 'x' : ' '),
+                            task.getId(),
+                            task.getDescription());
+                }
+            }
+            out.println();
+        }
+
+        //Now we display tasks without a set deadline
+        if (!tasksWithoutDeadline.isEmpty()) {
+            out.println("No deadline:");
+            for (Map.Entry<String, List<Task>> projectEntry : tasksWithoutDeadline.entrySet()) {
+                out.println("  " + projectEntry.getKey() + ":");
+                for (Task task : projectEntry.getValue()) {
+                    out.printf("    [%c] %d: %s%n",
+                            (task.isDone() ? 'x' : ' '),
+                            task.getId(),
+                            task.getDescription());
+                }
+            }
+            out.println();
+        }
+
+
+    }
+
     private void help() {
         out.println("Commands:");
         out.println("  show");
         out.println("  today");
+        out.println("  view-by-deadline");
         out.println("  add project <project name>");
         out.println("  add task <project name> <task description>");
         out.println("  check <task ID>");
