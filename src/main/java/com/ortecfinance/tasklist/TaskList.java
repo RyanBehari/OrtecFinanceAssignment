@@ -70,6 +70,9 @@ public final class TaskList implements Runnable {
             case "deadline":
                 deadline(commandRest[1]);
                 break;
+            case "today":
+                today();
+                break;
             default:
                 error(command);
                 break;
@@ -83,6 +86,33 @@ public final class TaskList implements Runnable {
                 out.printf("    [%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription());
             }
             out.println();
+        }
+    }
+
+    private void today(){
+        LocalDate todaysDate = LocalDate.now();
+
+        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+            //collect all the tasks that have a deadline for today
+            List<Task> todaysTasks = new ArrayList<>();
+            for (Task task : project.getValue()) {
+                if (task.getDeadline() != null && task.getDeadline().equals(todaysDate)) {
+                    todaysTasks.add(task);
+                }
+            }
+
+            //check if there even are any tasks with deadlines for today
+            if (!todaysTasks.isEmpty()) {
+                out.println(dateToString(todaysDate));
+                out.println(project.getKey());
+                for (Task task : todaysTasks) {
+                    out.printf("    [%c] %d: %s%n",
+                            (task.isDone() ? 'x' : ' '),
+                            task.getId(),
+                            task.getDescription());
+                }
+                out.println();
+            }
         }
     }
 
@@ -140,6 +170,16 @@ public final class TaskList implements Runnable {
         int month = Integer.parseInt(parts[1]);
         int year = Integer.parseInt(parts[2]);
         return LocalDate.of(year, month, day);
+    }
+
+    private String dateToString(LocalDate date) {
+        //first two digits for day then -,
+        //second two digits for month then -
+        //last 4 digits for year
+        return String.format("%02d-%02d-%04d",
+                date.getDayOfMonth(),
+                date.getMonthValue(),
+                date.getYear());
     }
 
     //function to set the deadline
