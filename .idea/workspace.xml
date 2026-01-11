@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ee1ab1d-5f7c-4635-b62d-7f1f3601ce90" name="Changes" comment="Added commentary">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9ee1ab1d-5f7c-4635-b62d-7f1f3601ce90" name="Changes" comment="enhanced some minor uses in function tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ortecfinance/tasklist/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ortecfinance/tasklist/TaskController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +35,9 @@
     &quot;accountId&quot;: &quot;a2290976-7f70-4b3b-8dcf-48c780cec7d4&quot;
   }
 }</component>
+  <component name="HttpClientOnboardingState"><![CDATA[{
+  "isOnboardingCommentShown": true
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -370,11 +373,26 @@
       <option name="project" value="LOCAL" />
       <updated>1768162975660</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Unit tests added for TaskStorage and TaskService functions (using an LLM).">
+      <option name="closed" value="true" />
+      <created>1768164025587</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1768164025587</updated>
+    </task>
+    <task id="LOCAL-00026" summary="enhanced some minor uses in function tests">
+      <option name="closed" value="true" />
+      <created>1768164628366</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1768164628366</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="first commit" />
     <MESSAGE value="gitignore fix" />
     <MESSAGE value="added deadline functionality" />
     <MESSAGE value="added today functionality" />
@@ -398,6 +416,8 @@
     <MESSAGE value="start of implementing the rest api functionalities" />
     <MESSAGE value="All mappings added" />
     <MESSAGE value="Added commentary" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added commentary" />
+    <MESSAGE value="Unit tests added for TaskStorage and TaskService functions (using an LLM)." />
+    <MESSAGE value="enhanced some minor uses in function tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="enhanced some minor uses in function tests" />
   </component>
 </project>
