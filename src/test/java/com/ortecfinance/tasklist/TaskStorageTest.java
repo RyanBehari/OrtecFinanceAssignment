@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -30,9 +31,7 @@ public class TaskStorageTest {
     @Test
     void testAddDuplicateProjectThrowsException() {
         taskStorage.addProject("secrets");
-        assertThrows(IllegalArgumentException.class, () -> {
-            taskStorage.addProject("secrets");
-        });
+        assertThrows(IllegalArgumentException.class, () -> taskStorage.addProject("secrets"));
     }
 
     @Test
@@ -47,14 +46,12 @@ public class TaskStorageTest {
 
         Map<String, List<Task>> projects = taskStorage.getAllProjects();
         assertThat(projects.get("training"), hasSize(1));
-        assertThat(projects.get("training").get(0).getDescription(), is("Learn Java"));
+        assertThat(projects.get("training").getFirst().getDescription(), is("Learn Java"));
     }
 
     @Test
     void testAddTaskToNonExistentProjectThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            taskStorage.addTask("nonexistent", "Some task");
-        });
+        assertThrows(IllegalArgumentException.class, () -> taskStorage.addTask("nonexistent", "Some task"));
     }
 
     @Test
@@ -67,7 +64,7 @@ public class TaskStorageTest {
 
         Map<String, List<Task>> projects = taskStorage.getAllProjects();
         assertThat(projects.get("project1").get(0).getId(), is(1L));
-        assertThat(projects.get("project2").get(0).getId(), is(2L));
+        assertThat(projects.get("project2").getFirst().getId(), is(2L));
         assertThat(projects.get("project1").get(1).getId(), is(3L));
     }
 
@@ -175,7 +172,7 @@ public class TaskStorageTest {
         Map<LocalDate, Map<String, List<Task>>> sorted = taskStorage.getTasksSortedByDeadline();
 
         List<LocalDate> keys = sorted.keySet().stream()
-                .filter(date -> date != null)
+                .filter(Objects::nonNull)
                 .toList();
 
         assertThat(keys.get(0), is(earlierDate));
@@ -196,7 +193,7 @@ public class TaskStorageTest {
                 taskStorage.getTasksSortedByDeadline();
 
         List<LocalDate> keys = new ArrayList<>(sorted.keySet());
-        assertThat(keys.get(keys.size() - 1), is(nullValue()));
+        assertThat(keys.getLast(), is(nullValue()));
     }
 
 

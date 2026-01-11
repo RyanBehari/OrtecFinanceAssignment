@@ -13,12 +13,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TaskServiceTest {
 
-    private TaskStorage taskStorage;
     private TaskService taskService;
 
     @BeforeEach
     public void setup() {
-        taskStorage = new TaskStorage();
+        TaskStorage taskStorage = new TaskStorage();
         taskService = new TaskService(taskStorage);
     }
 
@@ -48,7 +47,7 @@ public class TaskServiceTest {
 
         Map<String, List<Task>> projects = taskService.getAllProjects();
         assertThat(projects.get("training"), hasSize(1));
-        assertThat(projects.get("training").get(0).getDescription(), is("Learn Spring Boot"));
+        assertThat(projects.get("training").getFirst().getDescription(), is("Learn Spring Boot"));
     }
 
     @Test
@@ -66,7 +65,7 @@ public class TaskServiceTest {
         taskService.markTask(1, true);
 
         Map<String, List<Task>> projects = taskService.getAllProjects();
-        assertThat(projects.get("secrets").get(0).isDone(), is(true));
+        assertThat(projects.get("secrets").getFirst().isDone(), is(true));
     }
 
     @Test
@@ -78,7 +77,7 @@ public class TaskServiceTest {
         taskService.markTask(1, false);
 
         Map<String, List<Task>> projects = taskService.getAllProjects();
-        assertThat(projects.get("secrets").get(0).isDone(), is(false));
+        assertThat(projects.get("secrets").getFirst().isDone(), is(false));
     }
 
     @Test
@@ -97,7 +96,7 @@ public class TaskServiceTest {
         taskService.setTaskDeadline(1, deadline);
 
         Map<String, List<Task>> projects = taskService.getAllProjects();
-        assertThat(projects.get("secrets").get(0).getDeadline(), is(deadline));
+        assertThat(projects.get("secrets").getFirst().getDeadline(), is(deadline));
     }
 
     @Test
@@ -148,7 +147,7 @@ public class TaskServiceTest {
 
         Map<String, List<Task>> todaysTasks = taskService.getTasksTodaysDeadline();
         assertThat(todaysTasks.get("work"), hasSize(1));
-        assertThat(todaysTasks.get("work").get(0).getDescription(), is("Task today"));
+        assertThat(todaysTasks.get("work").getFirst().getDescription(), is("Task today"));
     }
 
     @Test
