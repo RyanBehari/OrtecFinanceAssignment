@@ -95,12 +95,14 @@ public class TaskStorage {
             }
         }
 
+        Map<LocalDate, Map<String, List<Task>>> sortedTasks = new LinkedHashMap<>(tasksDeadlineSorted);
+
         //add tasks without a deadline at the end
         if (!tasksWithoutDeadline.isEmpty()) {
-            tasksDeadlineSorted.put(null, tasksWithoutDeadline);
+            sortedTasks.put(null, tasksWithoutDeadline);
         }
 
-        return tasksDeadlineSorted;
+        return sortedTasks;
 
     }
 

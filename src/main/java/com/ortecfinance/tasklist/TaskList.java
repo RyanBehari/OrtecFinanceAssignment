@@ -215,86 +215,56 @@ public final class TaskList implements Runnable {
                 out.println("Please provide both an ID and a deadline.");
                 return;
             }
-            int taskID = Integer.parseInt(arguments[0]);
+            long taskID = Long.parseLong(arguments[0]);
             LocalDate date = parseDate(arguments[1]);
-
-            //search through tasks to find a corresponding task id, if found, set a deadline for it
-            for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-                for (Task task : project.getValue()) {
-                    if (task.getId() == taskID) {
-                        task.setDeadline(date);
-                        return;
-                    }
-                }
-            }
-            out.printf("Could not find a task with an ID of %d.", taskID);
-            out.println();
+            taskService.setTaskDeadline(taskID, date);
         }
         catch (NumberFormatException e) {
             out.println("Invalid task ID");
             out.println();
         }
+        catch (IllegalArgumentException e) {
+            out.println(e.getMessage());
+            out.println();
+        }
         catch (Exception e) {
-            out.println("Please use the format deadline <task ID> <dd-mm-yyyy>..");
+            out.println("Please use the format: deadline <task ID> <dd-mm-yyyy>.");
             out.println();
         }
 
     }
 
     private void viewByDeadline() {
-        //TreeMap to automatically sort added tasks chronologically
-        Map<LocalDate, Map<String, List<Task>>> tasksDeadlineSorted = new TreeMap<>();
-        //LinkedHashMap for guarranteed reproducability
-        Map<String, List<Task>> tasksWithoutDeadline = new LinkedHashMap<>();
 
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-            String projName = project.getKey();
-            for (Task task : project.getValue()) {
-                //Add to the correct mapping depending on if tasks has a set deadline or not
-                if (task.getDeadline() != null) {
-                    tasksDeadlineSorted
-                            .computeIfAbsent(task.getDeadline(), k -> new LinkedHashMap<>())
-                            .computeIfAbsent(projName, k -> new ArrayList<>())
-                            .add(task);
-                } else {
-                    tasksWithoutDeadline
-                            .computeIfAbsent(projName, k -> new ArrayList<>())
-                            .add(task);
+        Map<LocalDate, Map<String, List<Task>>> tasksByDeadline = taskService.getTasksSortedByDeadline();
+        for (Map.Entry<LocalDate, Map<String, List<Task>>> deadlineEntry : tasksByDeadline.entrySet()) {
+            if (deadlineEntry.getKey() == null) {
+                // Tasks without deadline
+                out.println("No deadline:");
+                for (Map.Entry<String, List<Task>> projectEntry : deadlineEntry.getValue().entrySet()) {
+                    out.println("  " + projectEntry.getKey() + ":");
+                    for (Task task : projectEntry.getValue()) {
+                        out.printf("    [%c] %d: %s%n",
+                                (task.isDone() ? 'x' : ' '),
+                                task.getId(),
+                                task.getDescription());
+                    }
                 }
-            }
-        }
-
-        //First we display the tasks sorted by deadline and then project
-        for (Map.Entry<LocalDate, Map<String, List<Task>>> deadlineEntry : tasksDeadlineSorted.entrySet()) {
-            out.println(dateToString(deadlineEntry.getKey()) + ":");
-            for (Map.Entry<String, List<Task>> projectEntry : deadlineEntry.getValue().entrySet()) {
-                out.println("  " + projectEntry.getKey() + ":");
-                for (Task task : projectEntry.getValue()) {
-                    out.printf("    [%c] %d: %s%n",
-                            (task.isDone() ? 'x' : ' '),
-                            task.getId(),
-                            task.getDescription());
+            } else {
+                // Tasks with deadline
+                out.println(dateToString(deadlineEntry.getKey()) + ":");
+                for (Map.Entry<String, List<Task>> projectEntry : deadlineEntry.getValue().entrySet()) {
+                    out.println("  " + projectEntry.getKey() + ":");
+                    for (Task task : projectEntry.getValue()) {
+                        out.printf("    [%c] %d: %s%n",
+                                (task.isDone() ? 'x' : ' '),
+                                task.getId(),
+                                task.getDescription());
+                    }
                 }
             }
             out.println();
         }
-
-        //Now we display tasks without a set deadline
-        if (!tasksWithoutDeadline.isEmpty()) {
-            out.println("No deadline:");
-            for (Map.Entry<String, List<Task>> projectEntry : tasksWithoutDeadline.entrySet()) {
-                out.println("  " + projectEntry.getKey() + ":");
-                for (Task task : projectEntry.getValue()) {
-                    out.printf("    [%c] %d: %s%n",
-                            (task.isDone() ? 'x' : ' '),
-                            task.getId(),
-                            task.getDescription());
-                }
-            }
-            out.println();
-        }
-
-
     }
 
     private void help() {
