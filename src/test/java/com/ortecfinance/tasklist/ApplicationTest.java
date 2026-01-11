@@ -198,3 +198,5 @@ public final class ApplicationTest {
         return applicationThread != null && applicationThread.isAlive();
     }
 }
+
+
