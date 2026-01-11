@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class CommandParser {
 
     //subfunction to parse the date given dd-mm-yyyy format
-    private static LocalDate parseDate(String dateString) {
+    public static LocalDate parseDate(String dateString) {
         String[] parts = dateString.split("-");
         int day = Integer.parseInt(parts[0]);
         int month = Integer.parseInt(parts[1]);
