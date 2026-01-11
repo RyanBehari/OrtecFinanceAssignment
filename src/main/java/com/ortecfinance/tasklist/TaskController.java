@@ -1,17 +1,26 @@
 package com.ortecfinance.tasklist;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/projects")
 public class TaskController {
 
-    @GetMapping
-    public List<String> getTasks() {
-        return Arrays.asList("Task 1", "Task 2", "Task 3");
+    private final TaskService taskService;
+
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
     }
+
+    @PostMapping
+    public void createProject(@RequestBody Map<String, String> request) {
+        taskService.createProject(request.get("name"));
+    }
+
 }
+
+
