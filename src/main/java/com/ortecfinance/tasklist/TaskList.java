@@ -10,7 +10,7 @@ import java.util.*;
 public final class TaskList implements Runnable {
     private static final String QUIT = "quit";
 
-    private final Map<String, List<Task>> tasks = new LinkedHashMap<>();
+    private final TaskService taskService;
     private final BufferedReader in;
     private final PrintWriter out;
 
@@ -19,12 +19,16 @@ public final class TaskList implements Runnable {
     public static void startConsole() {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter out = new PrintWriter(System.out);
-        new TaskList(in, out).run();
+
+        TaskStorage taskStorage = new TaskStorage();
+        TaskService ts = new TaskService(taskStorage);
+        new TaskList(in, out, ts).run();
     }
 
-    public TaskList(BufferedReader reader, PrintWriter writer) {
+    public TaskList(BufferedReader reader, PrintWriter writer, TaskService taskService) {
         this.in = reader;
         this.out = writer;
+        this.taskService = taskService;
     }
 
     public void run() {
@@ -96,7 +100,7 @@ public final class TaskList implements Runnable {
     }
 
     private void show() {
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
+        for (Map.Entry<String, List<Task>> project : taskService.getAllProjects().entrySet()) {
             out.println(project.getKey());
             for (Task task : project.getValue()) {
                 out.printf("    [%c] %d: %s%n", (task.isDone() ? 'x' : ' '), task.getId(), task.getDescription());
@@ -108,26 +112,15 @@ public final class TaskList implements Runnable {
     private void today(){
         LocalDate todaysDate = LocalDate.now();
         out.println(dateToString(todaysDate));
-        for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-            //collect all the tasks that have a deadline for today
-            List<Task> todaysTasks = new ArrayList<>();
+        for (Map.Entry<String, List<Task>> project : taskService.getTasksTodaysDeadline().entrySet()) {
+            out.println(project.getKey());
             for (Task task : project.getValue()) {
-                if (task.getDeadline() != null && task.getDeadline().equals(todaysDate)) {
-                    todaysTasks.add(task);
-                }
+                out.printf("    [%c] %d: %s%n",
+                        (task.isDone() ? 'x' : ' '),
+                        task.getId(),
+                        task.getDescription());
             }
-
-            //check if there even are any tasks with deadlines for today
-            if (!todaysTasks.isEmpty()) {
-                out.println(project.getKey());
-                for (Task task : todaysTasks) {
-                    out.printf("    [%c] %d: %s%n",
-                            (task.isDone() ? 'x' : ' '),
-                            task.getId(),
-                            task.getDescription());
-                }
-                out.println();
-            }
+            out.println();
         }
     }
 
@@ -156,22 +149,21 @@ public final class TaskList implements Runnable {
     }
 
     private void addProject(String name) {
-        if (tasks.containsKey(name)) {
+        try {
+            taskService.createProject(name);
+        } catch (IllegalArgumentException e) {
             out.printf("A project with the name of %s already exists.", name);
             out.println();
-            return;
         }
-        tasks.put(name, new ArrayList<Task>());
     }
 
     private void addTask(String project, String description) {
-        List<Task> projectTasks = tasks.get(project);
-        if (projectTasks == null) {
+        try {
+            taskService.createTask(project, description);
+        } catch (IllegalArgumentException e) {
             out.printf("Could not find a project with the name \"%s\".", project);
             out.println();
-            return;
         }
-        projectTasks.add(new Task(nextId(), description, false));
     }
 
     private void check(String idString) {
@@ -184,24 +176,16 @@ public final class TaskList implements Runnable {
 
     private void setDone(String idString, boolean done) {
 
-        try{
-            int id = Integer.parseInt(idString);
-            for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
-                for (Task task : project.getValue()) {
-                    if (task.getId() == id) {
-                        task.setDone(done);
-                        return;
-                    }
-                }
-            }
-            out.printf("Could not find a task with an ID of %d.", id);
-            out.println();
-        }
-        catch (NumberFormatException e) {
+        try {
+            long id = Long.parseLong(idString);
+            taskService.markTask(id, done);
+        } catch (NumberFormatException e) {
             out.printf("Invalid task ID: %s.", idString);
             out.println();
+        } catch (IllegalArgumentException e) {
+            out.printf("Could not find a task with an ID of %s.", idString);
+            out.println();
         }
-
     }
 
     //subfunction to parse the date given dd-mm-yyyy format
