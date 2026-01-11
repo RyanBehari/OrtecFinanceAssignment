@@ -46,7 +46,7 @@ Each task has:
 
 ```json
 {
-  "name": "My Project"
+  "name": "MyProject"
 }
 ```
 
@@ -62,7 +62,7 @@ Each task has:
 
 ```json
 {
-  "My Project": [
+  "MyProject": [
     {
       "id": 1,
       "description": "Write documentation",
@@ -70,7 +70,7 @@ Each task has:
       "deadline": "2026-01-15"
     }
   ],
-  "Another Project": []
+  "AnotherProject": []
 }
 ```
 
@@ -99,7 +99,7 @@ Each task has:
 **Example:**
 
 ```
-PUT /projects/My Project/tasks/1?deadline=20-01-2026
+PUT /projects/MyProject/tasks/1?deadline=20-01-2026
 ```
 
 **Response:** `200 OK` (no body)
@@ -115,7 +115,7 @@ PUT /projects/My Project/tasks/1?deadline=20-01-2026
 ```json
 {
   "20-01-2026": {
-    "My Project": [
+    "MyProject": [
       {
         "id": 1,
         "description": "Implement REST API",
@@ -125,7 +125,7 @@ PUT /projects/My Project/tasks/1?deadline=20-01-2026
     ]
   },
   "No deadline": {
-    "Another Project": [
+    "AnotherProject": [
       {
         "id": 2,
         "description": "Refactor code",
