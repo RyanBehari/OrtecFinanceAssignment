@@ -4,25 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ee1ab1d-5f7c-4635-b62d-7f1f3601ce90" name="Changes" comment="first commit">
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ortecfinance/tasklist/Task.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ortecfinance/tasklist/TaskController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ortecfinance/tasklist/TaskList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/ortecfinance/tasklist/TaskListApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/ortecfinance/tasklist/ApplicationTest.class" beforeDir="false" />
+    <list default="true" id="9ee1ab1d-5f7c-4635-b62d-7f1f3601ce90" name="Changes" comment="Added commentary">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;RyanBehari&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RyanBehari/OrtecFinanceAssignment.git&quot;,
+    &quot;accountId&quot;: &quot;a2290976-7f70-4b3b-8dcf-48c780cec7d4&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -35,17 +49,25 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JAR Application.TaskList-0.0.1-SNAPSHOT.jar.executor": "Run",
+    "JUnit.ApplicationTest.deadlineTodayFunctionalityCheck.executor": "Run",
+    "JUnit.ApplicationTest.executor": "Run",
+    "JUnit.ApplicationTest.it_works.executor": "Run",
+    "JUnit.ApplicationTest.viewByDeadlineTest.executor": "Run",
+    "JUnit.TaskServiceTest.executor": "Run",
+    "JUnit.TaskStorageTest.executor": "Run",
+    "JUnit.TaskStorageTest.testGetTasksSortedByDeadlineNoDeadlineComesLast.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Ryan/Desktop/Misc/OrtecFinanceAssignment",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -53,14 +75,91 @@
       <recent name="C:\Users\Ryan\Desktop\Misc\OrtecFinanceAssignment\.idea" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.TaskList-0.0.1-SNAPSHOT.jar">
-    <configuration name="TaskList-0.0.1-SNAPSHOT.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/target/TaskList-0.0.1-SNAPSHOT.jar" />
-      <method v="2" />
+  <component name="RunManager" selected="JUnit.TaskStorageTest">
+    <configuration name="ApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskList" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ortecfinance.tasklist.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ortecfinance.tasklist" />
+      <option name="MAIN_CLASS_NAME" value="com.ortecfinance.tasklist.ApplicationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplicationTest.viewByDeadlineTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskList" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ortecfinance.tasklist.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ortecfinance.tasklist" />
+      <option name="MAIN_CLASS_NAME" value="com.ortecfinance.tasklist.ApplicationTest" />
+      <option name="METHOD_NAME" value="viewByDeadlineTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskList" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ortecfinance.tasklist.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ortecfinance.tasklist" />
+      <option name="MAIN_CLASS_NAME" value="com.ortecfinance.tasklist.TaskServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskStorageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskList" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ortecfinance.tasklist.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ortecfinance.tasklist" />
+      <option name="MAIN_CLASS_NAME" value="com.ortecfinance.tasklist.TaskStorageTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TaskStorageTest.testGetTasksSortedByDeadlineNoDeadlineComesLast" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TaskList" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ortecfinance.tasklist.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ortecfinance.tasklist" />
+      <option name="MAIN_CLASS_NAME" value="com.ortecfinance.tasklist.TaskStorageTest" />
+      <option name="METHOD_NAME" value="testGetTasksSortedByDeadlineNoDeadlineComesLast" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.TaskList-0.0.1-SNAPSHOT.jar" />
+        <item itemvalue="JUnit.TaskStorageTest" />
+        <item itemvalue="JUnit.TaskServiceTest" />
+        <item itemvalue="JUnit.ApplicationTest" />
+        <item itemvalue="JUnit.TaskStorageTest.testGetTasksSortedByDeadlineNoDeadlineComesLast" />
+        <item itemvalue="JUnit.ApplicationTest.viewByDeadlineTest" />
       </list>
     </recent_temporary>
   </component>
@@ -87,11 +186,218 @@
       <option name="project" value="LOCAL" />
       <updated>1767971463163</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="gitignore fix">
+      <option name="closed" value="true" />
+      <created>1767971792799</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1767971792799</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added deadline functionality">
+      <option name="closed" value="true" />
+      <created>1768063578395</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1768063578395</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added today functionality">
+      <option name="closed" value="true" />
+      <created>1768065095677</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1768065095677</updated>
+    </task>
+    <task id="LOCAL-00005" summary="deadline for today now only shows once at the top and added a test for today and deadline functionality">
+      <option name="closed" value="true" />
+      <created>1768065968987</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1768065968987</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added view-by-deadline functionality where tasks are also grouped by project after being grouped by date">
+      <option name="closed" value="true" />
+      <created>1768067531085</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1768067531085</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added a test for viewbydeadline">
+      <option name="closed" value="true" />
+      <created>1768068188892</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1768068188892</updated>
+    </task>
+    <task id="LOCAL-00008" summary="check/uncheck error handling for missing task id as well as a non integer given argument">
+      <option name="closed" value="true" />
+      <created>1768068958112</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1768068958112</updated>
+    </task>
+    <task id="LOCAL-00009" summary="error handling for adding tasks with missing descriptions to prevent crashing and fixing bug where adding a second project with the same name completely overwrites the first one which removes all the bound tasks.">
+      <option name="closed" value="true" />
+      <created>1768070939165</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1768070939165</updated>
+    </task>
+    <task id="LOCAL-00010" summary="deadline error handling implemented">
+      <option name="closed" value="true" />
+      <created>1768072457996</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1768072457996</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Start of refactoring codebase, Seperated task storage">
+      <option name="closed" value="true" />
+      <created>1768078072802</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1768078072802</updated>
+    </task>
+    <task id="LOCAL-00012" summary="TaskService class added for handling operations">
+      <option name="closed" value="true" />
+      <created>1768143865659</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1768143865659</updated>
+    </task>
+    <task id="LOCAL-00013" summary="added functions for service class">
+      <option name="closed" value="true" />
+      <created>1768144979792</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1768144979792</updated>
+    </task>
+    <task id="LOCAL-00014" summary="start of refactoring TaskList to use TaskService and TaskStorage">
+      <option name="closed" value="true" />
+      <created>1768146054666</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1768146054666</updated>
+    </task>
+    <task id="LOCAL-00015" summary="getTasksSortedByDeadline bugfix for Treemap not allowing nullkeys and refactored viewByDeadline in TaskList to use the taskservice function instead">
+      <option name="closed" value="true" />
+      <created>1768146849578</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1768146849578</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Start of command parser">
+      <option name="closed" value="true" />
+      <created>1768147558250</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1768147558250</updated>
+    </task>
+    <task id="LOCAL-00017" summary="finishing up command classes">
+      <option name="closed" value="true" />
+      <created>1768147912228</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1768147912228</updated>
+    </task>
+    <task id="LOCAL-00018" summary="parse command added">
+      <option name="closed" value="true" />
+      <created>1768151289297</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1768151289297</updated>
+    </task>
+    <task id="LOCAL-00019" summary="added functions to format data into strings for display in the CLI">
+      <option name="closed" value="true" />
+      <created>1768152229794</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1768152229794</updated>
+    </task>
+    <task id="LOCAL-00020" summary="added functions for handling commands and fixed line seperator issues in the taskformatter">
+      <option name="closed" value="true" />
+      <created>1768156220841</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1768156220841</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Replaced += in taskformatter functions for StringBuilder for better performance">
+      <option name="closed" value="true" />
+      <created>1768157001418</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1768157001418</updated>
+    </task>
+    <task id="LOCAL-00022" summary="start of implementing the rest api functionalities">
+      <option name="closed" value="true" />
+      <created>1768158110605</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1768158110605</updated>
+    </task>
+    <task id="LOCAL-00023" summary="All mappings added">
+      <option name="closed" value="true" />
+      <created>1768161457900</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1768161457900</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Added commentary">
+      <option name="closed" value="true" />
+      <created>1768162975660</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1768162975660</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
+    <MESSAGE value="gitignore fix" />
+    <MESSAGE value="added deadline functionality" />
+    <MESSAGE value="added today functionality" />
+    <MESSAGE value="deadline for today now only shows once at the top and added a test for today and deadline functionality" />
+    <MESSAGE value="added view-by-deadline functionality where tasks are also grouped by project after being grouped by date" />
+    <MESSAGE value="added a test for viewbydeadline" />
+    <MESSAGE value="check/uncheck error handling for missing task id as well as a non integer given argument" />
+    <MESSAGE value="error handling for adding tasks with missing descriptions to prevent crashing and fixing bug where adding a second project with the same name completely overwrites the first one which removes all the bound tasks." />
+    <MESSAGE value="deadline error handling implemented" />
+    <MESSAGE value="Start of refactoring codebase, Seperated task storage" />
+    <MESSAGE value="TaskService class added for handling operations" />
+    <MESSAGE value="added functions for service class" />
+    <MESSAGE value="start of refactoring TaskList to use TaskService and TaskStorage" />
+    <MESSAGE value="getTasksSortedByDeadline bugfix for Treemap not allowing nullkeys and refactored viewByDeadline in TaskList to use the taskservice function instead" />
+    <MESSAGE value="Start of command parser" />
+    <MESSAGE value="finishing up command classes" />
+    <MESSAGE value="parse command added" />
+    <MESSAGE value="added functions to format data into strings for display in the CLI" />
+    <MESSAGE value="added functions for handling commands and fixed line seperator issues in the taskformatter" />
+    <MESSAGE value="Replaced += in taskformatter functions for StringBuilder for better performance" />
+    <MESSAGE value="start of implementing the rest api functionalities" />
+    <MESSAGE value="All mappings added" />
+    <MESSAGE value="Added commentary" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added commentary" />
   </component>
 </project>
