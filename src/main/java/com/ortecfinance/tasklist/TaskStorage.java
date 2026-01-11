@@ -75,7 +75,7 @@ public class TaskStorage {
     public Map<LocalDate, Map<String, List<Task>>> getTasksSortedByDeadline(){
         //TreeMap to automatically sort added tasks chronologically
         Map<LocalDate, Map<String, List<Task>>> tasksDeadlineSorted = new TreeMap<>();
-        //LinkedHashMap for guarranteed reproducability
+        //LinkedHashMap for guaranteed reproducibility
         Map<String, List<Task>> tasksWithoutDeadline = new LinkedHashMap<>();
 
         for (Map.Entry<String, List<Task>> project : tasks.entrySet()) {
