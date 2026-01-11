@@ -14,7 +14,7 @@ public class TaskListApplication {
 
         new Thread(() -> {
             System.out.println("Starting console application...");
-            TaskList.startConsole(sharedService);
+            TaskList.startConsole(sharedService, context);
         }).start();
 
         System.out.println("REST API running at http://localhost:8080/projects");

@@ -1,5 +1,8 @@
 package com.ortecfinance.tasklist;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,20 +13,22 @@ public final class TaskList implements Runnable {
     private static final String QUIT = "quit";
 
     private final TaskService taskService;
+    private final ConfigurableApplicationContext context;
     private final BufferedReader in;
     private final PrintWriter out;
 
-    public static void startConsole(TaskService ts) {
+    public static void startConsole(TaskService ts, ConfigurableApplicationContext context) {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter out = new PrintWriter(System.out);
 
-        new TaskList(in, out, ts).run();
+        new TaskList(in, out, ts, context).run();
     }
 
-    public TaskList(BufferedReader reader, PrintWriter writer, TaskService taskService) {
+    public TaskList(BufferedReader reader, PrintWriter writer, TaskService taskService, ConfigurableApplicationContext context) {
         this.in = reader;
         this.out = writer;
         this.taskService = taskService;
+        this.context = context;
     }
 
     public void run() {
@@ -38,6 +43,10 @@ public final class TaskList implements Runnable {
                 throw new RuntimeException(e);
             }
             if (command.equals(QUIT)) {
+                //no context if we are in a unit test
+                if (context != null) {
+                    SpringApplication.exit(context, () -> 0);
+                }
                 break;
             }
             execute(command);

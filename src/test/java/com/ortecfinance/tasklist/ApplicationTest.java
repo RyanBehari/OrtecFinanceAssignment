@@ -1,6 +1,7 @@
 package com.ortecfinance.tasklist;
 
 import org.junit.jupiter.api.*;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.*;
 
@@ -24,7 +25,8 @@ public final class ApplicationTest {
 
         TaskStorage taskStorage = new TaskStorage();
         TaskService taskService = new TaskService(taskStorage);
-        TaskList taskList = new TaskList(in, out, taskService);
+        ConfigurableApplicationContext dummyContext = null;
+        TaskList taskList = new TaskList(in, out, taskService, dummyContext);
         applicationThread = new Thread(taskList);
     }
 
