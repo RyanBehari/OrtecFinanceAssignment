@@ -7,18 +7,22 @@ public class TaskStorage {
     private final Map<String, List<Task>> tasks = new LinkedHashMap<>();
     private long lastId = 0;
 
-    private void addProject(String name) {
+    public void addProject(String name) {
         if (tasks.containsKey(name)) {
             throw new IllegalArgumentException("Project " + name + " already exists: ");
         }
         tasks.put(name, new ArrayList<Task>());
     }
 
+    public boolean projectExists(String name) {
+        return tasks.containsKey(name);
+    }
+
     private long nextId() {
         return ++lastId;
     }
 
-    private void addTask(String project, String description) {
+    public void addTask(String project, String description) {
         List<Task> projectTasks = tasks.get(project);
         if (projectTasks == null) {
             throw new IllegalArgumentException("Project not found: " + project);
