@@ -25,67 +25,67 @@ public class TaskFormatter {
     }
 
     public static String formatAllProjects(Map<String, List<Task>> projects) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (Map.Entry<String, List<Task>> project : projects.entrySet()) {
-            result += project.getKey() + LINE_SEP;
+            result.append(project.getKey()).append(LINE_SEP);
             for (Task task : project.getValue()) {
-                result += formatTask(task) + LINE_SEP;
+                result.append(formatTask(task)).append(LINE_SEP);
             }
-            result += LINE_SEP;
+            result.append(LINE_SEP);
         }
-        return result;
+        return result.toString();
     }
 
     private static String formatProjectsWithIndent(Map<String, List<Task>> projects) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         //loop through projects
         for (Map.Entry<String, List<Task>> projectEntry : projects.entrySet()) {
             //add projects name with two spaces and a :
-            result += "  " + projectEntry.getKey() + ":" + LINE_SEP;
+            result.append("  ").append(projectEntry.getKey()).append(":").append(LINE_SEP);
 
             //add each task
             for (Task task : projectEntry.getValue()) {
-                result += formatTask(task) + LINE_SEP;
+                result.append(formatTask(task)).append(LINE_SEP);
             }
         }
-        return result;
+        return result.toString();
     }
 
     public static String formatTasksByDeadline(Map<LocalDate, Map<String, List<Task>>> tasksByDeadline) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
 
         for (Map.Entry<LocalDate, Map<String, List<Task>>> deadlineEntry : tasksByDeadline.entrySet()) {
             //Check if we are in the no deadline section
             if (deadlineEntry.getKey() == null) {
-                result += "No deadline:" + LINE_SEP;
-                result += formatProjectsWithIndent(deadlineEntry.getValue());
+                result.append("No deadline:").append(LINE_SEP);
+                result.append(formatProjectsWithIndent(deadlineEntry.getValue()));
             } else {
                 //add deadline at top then format the projects with this deadline
-                result += formatDate(deadlineEntry.getKey()) + ":" + LINE_SEP;
-                result += formatProjectsWithIndent(deadlineEntry.getValue());
+                result.append(formatDate(deadlineEntry.getKey())).append(":").append(LINE_SEP);
+                result.append(formatProjectsWithIndent(deadlineEntry.getValue()));
             }
-            result += LINE_SEP;
+            result.append(LINE_SEP);
         }
 
-        return result;
+        return result.toString();
     }
 
     public static String formatTodaysTasks(Map<String, List<Task>> projects) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         //add todays date at top
-        result += formatDate(LocalDate.now()) + LINE_SEP;
+        result.append(formatDate(LocalDate.now())).append(LINE_SEP);
         //loop through projects with tasks that have a deadline for today
         for (Map.Entry<String, List<Task>> project : projects.entrySet()) {
             //project name added
-            result += project.getKey() + LINE_SEP;
+            result.append(project.getKey()).append(LINE_SEP);
             for (Task task : project.getValue()) {
                 //add the task from this project
-                result += formatTask(task) + LINE_SEP;
+                result.append(formatTask(task)).append(LINE_SEP);
             }
             //empty line after every project
-            result += LINE_SEP;
+            result.append(LINE_SEP);
         }
-        return result;
+        return result.toString();
 
     }
 
