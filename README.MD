@@ -1,5 +1,17 @@
 # Task List Case – REST API Documentation
 
+## Running the Application
+
+The application can be run using:
+
+* **Simultaneously start Console (CLI) + REST API mode:**
+
+```
+mvn spring-boot:run
+```
+
+This will launch the REST API at `http://localhost:8080` and also start the CLI in the same process using shared memory.
+
 ## Base URL
 
 ```
@@ -22,7 +34,7 @@ Each task has:
 * `id` – unique identifier
 * `description` – task description
 * `done` – boolean indicating completion
-* `deadline` – optional date (`DD-MM-YYYY`)
+* `deadline` – optional date (`DD-MM-YYYY`) (note: internally stored as `YYYY-MM-DD` by Java)
 
 ## REST Endpoints
 
@@ -130,5 +142,5 @@ PUT /projects/My Project/tasks/1?deadline=20-01-2026
 ## Notes
 
 * Data is **in memory** and lost when the application stops.
-* Dates can be given by the user in `DD-MM-YYYY` format but internally stored and serialized by Java as `YYYY-MM-DD`.
-
+* Dates are displayed to the user in `DD-MM-YYYY` format but internally stored and serialized by Java as `YYYY-MM-DD`.
+* Console application and REST API share the same memory when run simultaneously.

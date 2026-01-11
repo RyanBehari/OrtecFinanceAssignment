@@ -8,14 +8,16 @@ import org.springframework.context.annotation.Bean;
 public class TaskListApplication {
 
     public static void main(String[] args) {
-        if (args.length == 0) {
-            System.out.println("Starting console Application");
-            TaskList.startConsole();
-        }
-        else {
-            SpringApplication.run(TaskListApplication.class, args);
-            System.out.println("localhost:8080/tasks");
-        }
+        var context = SpringApplication.run(TaskListApplication.class, args);
+
+        TaskService sharedService = context.getBean(TaskService.class);
+
+        new Thread(() -> {
+            System.out.println("Starting console application...");
+            TaskList.startConsole(sharedService);
+        }).start();
+
+        System.out.println("REST API running at http://localhost:8080/projects");
     }
 
     @Bean

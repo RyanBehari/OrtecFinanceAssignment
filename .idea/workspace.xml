@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9ee1ab1d-5f7c-4635-b62d-7f1f3601ce90" name="Changes" comment="enhanced some minor uses in function tests">
+    <list default="true" id="9ee1ab1d-5f7c-4635-b62d-7f1f3601ce90" name="Changes" comment="Added a basic documentation of the rest api with some examples">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ortecfinance/tasklist/TaskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ortecfinance/tasklist/TaskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.MD" beforeDir="false" afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ortecfinance/tasklist/TaskList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ortecfinance/tasklist/TaskList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ortecfinance/tasklist/TaskListApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ortecfinance/tasklist/TaskListApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,11 +391,18 @@
       <option name="project" value="LOCAL" />
       <updated>1768164628366</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added a basic documentation of the rest api with some examples">
+      <option name="closed" value="true" />
+      <created>1768166441845</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1768166441845</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="gitignore fix" />
     <MESSAGE value="added deadline functionality" />
     <MESSAGE value="added today functionality" />
     <MESSAGE value="deadline for today now only shows once at the top and added a test for today and deadline functionality" />
@@ -418,6 +427,7 @@
     <MESSAGE value="Added commentary" />
     <MESSAGE value="Unit tests added for TaskStorage and TaskService functions (using an LLM)." />
     <MESSAGE value="enhanced some minor uses in function tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="enhanced some minor uses in function tests" />
+    <MESSAGE value="Added a basic documentation of the rest api with some examples" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a basic documentation of the rest api with some examples" />
   </component>
 </project>

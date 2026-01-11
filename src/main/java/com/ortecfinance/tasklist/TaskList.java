@@ -13,12 +13,10 @@ public final class TaskList implements Runnable {
     private final BufferedReader in;
     private final PrintWriter out;
 
-    public static void startConsole() {
+    public static void startConsole(TaskService ts) {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         PrintWriter out = new PrintWriter(System.out);
 
-        TaskStorage taskStorage = new TaskStorage();
-        TaskService ts = new TaskService(taskStorage);
         new TaskList(in, out, ts).run();
     }
 
